@@ -2,19 +2,16 @@ from pygame import Vector2
 
 SCREEN_W = 800
 SCREEN_H = 600
-
 # If we have more colors, consider a colors.py
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
-
 # The target framerate of our game. Set to 0 for no limit
 FPS = 144
-
 # Bullet properities
 PLAYER_BULLET_SPEED = 1
 ENEMY_BULLET_SPEED = 0.4
-PLAYER_BULLET_COOLDOWN = 100  # In milliseconds
-ENEMY_BULLET_COOLDOWN = 3000
+PLAYER_BULLET_COOLDOWN = 500  # In milliseconds
+ENEMY_BULLET_COOLDOWN = 1500
 
 # Enemy Properties
 ENEMY_SPEED = 0.3
@@ -33,8 +30,5 @@ EXTRA_ENEMY_SPEED_PER_LEVEL = 0.05
 PLAYER_START_VECTOR = Vector2(370, 480)
 PLAYER_HEALTH = 5
 PLAYER_SPEED = 0.8
-PLAYER_WIDTH = 55
-PLAYER_HEIGHT = 55
-
 # Shield properties
 NUMBER_OF_SHIELDS = 4

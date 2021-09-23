@@ -1,6 +1,6 @@
 import pygame
-from pygame.constants import QUIT
 from src.constants import SCREEN_W, SCREEN_H, FPS
+from pygame.locals import QUIT
 from src.game import Game
 
 def main():
@@ -24,7 +24,6 @@ def main():
         for e in events:
             if e.type == QUIT:
                 running = False
-
 
 
 if __name__ == "__main__":
