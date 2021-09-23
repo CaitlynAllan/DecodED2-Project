@@ -3,7 +3,10 @@ from pygame import Color, Vector2
 from src.constants import BLACK, ENEMY_SPEED, WHITE
 from src.entities.player import Player
 from src.entities.enemy import Enemy
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4d9195a0859f3057dff8e8cba0d6a489eab3e5e4
 
 class Game:
 
@@ -16,12 +19,18 @@ class Game:
         self.generate_enemies()
 
     def generate_enemies(self):
+<<<<<<< HEAD
         test_enemy_1 = Enemy(
             Vector2(100, 100), ENEMY_SPEED, 'res/enemy-blue.png')
         test_enemy_2 = Enemy(
             Vector2(150, 100), ENEMY_SPEED, 'res/enemy-green.png')
         test_enemy_3 = Enemy(
             Vector2(200, 100), ENEMY_SPEED, 'res/enemy-red.png')
+=======
+        test_enemy_1 = Enemy(Vector2(100,100), ENEMY_SPEED, 'res/enemy-blue.png')
+        test_enemy_2 = Enemy(Vector2(150,100), ENEMY_SPEED, 'res/enemy-green.png')
+        test_enemy_3 = Enemy(Vector2(200,100), ENEMY_SPEED, 'res/enemy-red.png')
+>>>>>>> 4d9195a0859f3057dff8e8cba0d6a489eab3e5e4
 
         self.entities.append(test_enemy_1)
         self.entities.append(test_enemy_2)
@@ -52,16 +61,27 @@ class Game:
                 if isinstance(obj, Enemy):
                     self.num_active_enemies -= 1
                 del self.entities[i]
+<<<<<<< HEAD
 
+=======
+            # Execute entity logic
+>>>>>>> 4d9195a0859f3057dff8e8cba0d6a489eab3e5e4
             obj.tick(delta, self.entities)
 
             obj.move(delta)
 
+<<<<<<< HEAD
         Enemy.random_enemy_shoot(
             self.entities, self.num_active_enemies, delta, NUM_ENEMIES_SHOOT=2)
 
     def render_text(self, display, font, text: str, color: Color, position: Vector2):
         surface = font.render(text, True, color)
+=======
+            Enemy.random_enemy_shoot(self.entities, self.num_active_enemies, delta, NUM_ENEMIES_SHOOT=1)
+    
+    def render_text(self, display, font, text: str, colour: Color, position: Vector2):
+        surface = font.render(text, True, colour)
+>>>>>>> 4d9195a0859f3057dff8e8cba0d6a489eab3e5e4
         display.blit(surface, position)
 
     def render(self, display, font):
