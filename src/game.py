@@ -1,18 +1,18 @@
 from pygame.locals import K_RIGHT, K_SPACE, KEYDOWN, KEYUP, K_LEFT
 from pygame import Color, Vector2
-from src.entities.shield import Shield
 from src.constants import BLACK, ENEMY_OFFSET, ENEMY_SPEED, EXTRA_ENEMIES_PER_LEVEL, EXTRA_ENEMY_SPEED_PER_LEVEL, INITIAL_NUM_ENEMIES, MAX_PER_ROW, NUMBER_OF_SHIELDS, ROW_GAP, SCREEN_H, SCREEN_W, WHITE
 from src.entities.player import Player
 from src.entities.enemy import Enemy
+from src.entities.shield import Shield
 
 
 class Game:
-
+    score = 0
     entities: "list"
 
     def __init__(self):
         self.restart_game()
-
+    
     def restart_game(self):
         self.entities = []
         self.player = Player()
@@ -40,20 +40,19 @@ class Game:
 
         col, row = 0, 0
         for _ in range(total_enemy_count):
-            enemy_corrds = Vector2(ENEMY_OFFSET + (col * col_gap), ENEMY_OFFSET + row * ROW_GAP)
-            new_enemy = Enemy(enemy_corrds, curr_enemy_speed, "res/enemy-green.png")
+            enemy_coords = Vector2(ENEMY_OFFSET + (col * col_gap), ENEMY_OFFSET + (row * ROW_GAP))
+            new_enemy = Enemy(enemy_coords, curr_enemy_speed, "res/enemy-green.png")
             self.entities.append(new_enemy)
 
             col += 1
             if col >= MAX_PER_ROW:
                 col = 0
                 row += 1
-
+    
     def generate_shields(self):
         n = NUMBER_OF_SHIELDS + 1
-        for i in range(1,n):
+        for i in range(1, n):
             self.entities.append(Shield(i * SCREEN_W/n, 350))
-
 
     def handle_input(self, events):
         for event in events:
@@ -80,6 +79,7 @@ class Game:
             if obj.expired:
                 if isinstance(obj, Enemy):
                     self.num_active_enemies -= 1
+                    self.score += 1
                 del self.entities[i]
 
             obj.tick(delta, self.entities)
@@ -88,7 +88,7 @@ class Game:
 
         Enemy.random_enemy_shoot(
             self.entities, self.num_active_enemies, delta, NUM_ENEMIES_SHOOT=2)
-
+        
         if self.num_active_enemies == 0:
             self.start_next_level()
 
@@ -105,4 +105,4 @@ class Game:
             self.render_text(display, font, f"Level: {self.level}", WHITE, (50, 50))
             self.render_text(display, font, f"Health: {self.player.health}", WHITE, (50, 100))
         else:
-            self.render_text(display, font, "Game Over. Press SPACE to start agian!", WHITE, (SCREEN_W // 2 - 200, SCREEN_H // 2))
+            self.render_text(display, font, "Game Over. Press SPACE to start again!", WHITE, (SCREEN_W // 2 - 200, SCREEN_H // 2))

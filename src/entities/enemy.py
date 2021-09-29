@@ -1,5 +1,6 @@
 from pygame import Vector2
 import random
+
 from src.constants import ENEMY_BULLET_COOLDOWN, ENEMY_BULLET_SPEED, ENEMY_OFFSET, ROW_JUMP_SIZE
 from src.entity import Entity
 from src.entities.bullet import Bullet
